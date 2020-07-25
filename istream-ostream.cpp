@@ -6,5 +6,5 @@ ostream& operator<<(ostream& out, const argument){ // & - is necessary to be abl
 istream& operator>>(istream& in, type& arg){
 int num_rows, num_columns;
     in >> num_rows >> num_columns;
-  return in
+  return in;
 }
