@@ -4,7 +4,7 @@
 //#include <cmath>
 #include <tuple>
 using namespace std;
-
+//info - словарь, ключ которого - человек, а значение - словарь заданий
 enum class TaskStatus {
     NEW,          // новая
     IN_PROGRESS,  // в разработке
@@ -28,12 +28,13 @@ public:
         info[person][TaskStatus:: NEW]++;
     };
 
-    // Обновить статусы по данному количеству задач конкретного разработчика,
+    // Обновить статусы по данному количеству задач конкретного разработчика; Если количество задач больше, чем какой-либо из счетчиков, то идем дальше по списку. Не забываем,
+    // что мы не учитываем в нетронутых Done.
     tuple<TasksInfo, TasksInfo> PerformPersonTasks(
             const string& person, int task_count) {
-        TasksInfo upgrade;
-        TasksInfo updated;
-        TasksInfo untouched;
+        TasksInfo upgrade;// это наш тот же самый словарь, только с обновленными данными
+        TasksInfo updated;//обновленные данные
+        TasksInfo untouched;//нетронутые данные
         auto& tasks_info = info[person];
         for (auto &item : tasks_info) {
             if (item.first == TaskStatus::NEW) {
